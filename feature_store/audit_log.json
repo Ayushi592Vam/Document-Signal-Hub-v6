@@ -28935,5 +28935,294 @@
     "total_rows": 0,
     "total_cols": 0,
     "col_renames": {}
+  },
+  {
+    "event": "FILE_INGESTED",
+    "timestamp": "2026-04-24T21:21:05.527061",
+    "filename": "fnol 2.txt",
+    "file_hash": "8be735012f47256d00ea7b70ec4ffc0b6125b542fb1193aaaff110ce190fa52a",
+    "sheets": [
+      "Transcript"
+    ]
+  },
+  {
+    "event": "SHEET_PARSED",
+    "timestamp": "2026-04-24T21:21:05.816595",
+    "filename": "fnol 2.txt",
+    "sheet": "Transcript",
+    "sheet_hash": "8be735012f47256d00ea7b70ec4ffc0b6125b542fb1193aaaff110ce190fa52a",
+    "claim_rows": 0,
+    "sheet_type": "TXT_TRANSCRIPT",
+    "total_rows": 0,
+    "total_cols": 0,
+    "col_renames": {}
+  },
+  {
+    "event": "FILE_INGESTED",
+    "timestamp": "2026-04-24T21:31:45.349098",
+    "filename": "fnol 2.txt",
+    "file_hash": "8be735012f47256d00ea7b70ec4ffc0b6125b542fb1193aaaff110ce190fa52a",
+    "sheets": [
+      "Transcript"
+    ]
+  },
+  {
+    "event": "SHEET_PARSED",
+    "timestamp": "2026-04-24T21:31:45.618609",
+    "filename": "fnol 2.txt",
+    "sheet": "Transcript",
+    "sheet_hash": "8be735012f47256d00ea7b70ec4ffc0b6125b542fb1193aaaff110ce190fa52a",
+    "claim_rows": 0,
+    "sheet_type": "TXT_TRANSCRIPT",
+    "total_rows": 0,
+    "total_cols": 0,
+    "col_renames": {}
+  },
+  {
+    "event": "FILE_INGESTED",
+    "timestamp": "2026-04-24T21:33:43.528185",
+    "filename": "FNOL Transcript.txt",
+    "file_hash": "084673364fcbb2749a4b4ff87324ccee29daafcb656628c9d12d5c1700ecc17b",
+    "sheets": [
+      "Transcript"
+    ]
+  },
+  {
+    "event": "SHEET_PARSED",
+    "timestamp": "2026-04-24T21:33:43.888808",
+    "filename": "FNOL Transcript.txt",
+    "sheet": "Transcript",
+    "sheet_hash": "084673364fcbb2749a4b4ff87324ccee29daafcb656628c9d12d5c1700ecc17b",
+    "claim_rows": 0,
+    "sheet_type": "TXT_TRANSCRIPT",
+    "total_rows": 0,
+    "total_cols": 0,
+    "col_renames": {}
+  },
+  {
+    "event": "SHEET_PARSED",
+    "timestamp": "2026-04-24T21:40:13.385754",
+    "filename": "fnol 2.txt",
+    "sheet": "Transcript",
+    "sheet_hash": "8be735012f47256d00ea7b70ec4ffc0b6125b542fb1193aaaff110ce190fa52a",
+    "claim_rows": 0,
+    "sheet_type": "TXT_TRANSCRIPT",
+    "total_rows": 0,
+    "total_cols": 0,
+    "col_renames": {}
+  },
+  {
+    "event": "FILE_INGESTED",
+    "timestamp": "2026-04-24T21:41:38.365238",
+    "filename": "Medical_Bill_Statement.pdf",
+    "file_hash": "e7b83886392f50f3edd3ddca4b347e468b7ab78a7c232f19aec93dc620895820",
+    "sheets": [
+      "Page 1",
+      "Page 2"
+    ]
+  },
+  {
+    "event": "SHEET_PARSED",
+    "timestamp": "2026-04-24T21:42:36.678105",
+    "filename": "Medical_Bill_Statement.pdf",
+    "sheet": "Page 1",
+    "sheet_hash": "f1ccfd99a00c3af56116cc4d3559002ff20dfb084f93ee74dc917c62f1096d1d",
+    "claim_rows": 1,
+    "sheet_type": "PDF",
+    "total_rows": 1,
+    "total_cols": 19,
+    "col_renames": {}
+  },
+  {
+    "event": "FILE_INGESTED",
+    "timestamp": "2026-04-24T22:11:14.699261",
+    "filename": "fnol 2.txt",
+    "file_hash": "8be735012f47256d00ea7b70ec4ffc0b6125b542fb1193aaaff110ce190fa52a",
+    "sheets": [
+      "Transcript"
+    ]
+  },
+  {
+    "event": "SHEET_PARSED",
+    "timestamp": "2026-04-24T22:11:14.894984",
+    "filename": "fnol 2.txt",
+    "sheet": "Transcript",
+    "sheet_hash": "8be735012f47256d00ea7b70ec4ffc0b6125b542fb1193aaaff110ce190fa52a",
+    "claim_rows": 0,
+    "sheet_type": "TXT_TRANSCRIPT",
+    "total_rows": 0,
+    "total_cols": 0,
+    "col_renames": {}
+  },
+  {
+    "event": "FILE_INGESTED",
+    "timestamp": "2026-04-24T22:21:22.991300",
+    "filename": "FNOL Transcript.txt",
+    "file_hash": "084673364fcbb2749a4b4ff87324ccee29daafcb656628c9d12d5c1700ecc17b",
+    "sheets": [
+      "Transcript"
+    ]
+  },
+  {
+    "event": "SHEET_PARSED",
+    "timestamp": "2026-04-24T22:21:23.157099",
+    "filename": "FNOL Transcript.txt",
+    "sheet": "Transcript",
+    "sheet_hash": "084673364fcbb2749a4b4ff87324ccee29daafcb656628c9d12d5c1700ecc17b",
+    "claim_rows": 0,
+    "sheet_type": "TXT_TRANSCRIPT",
+    "total_rows": 0,
+    "total_cols": 0,
+    "col_renames": {}
+  },
+  {
+    "event": "FILE_INGESTED",
+    "timestamp": "2026-04-24T22:24:28.760664",
+    "filename": "fnol 2.txt",
+    "file_hash": "8be735012f47256d00ea7b70ec4ffc0b6125b542fb1193aaaff110ce190fa52a",
+    "sheets": [
+      "Transcript"
+    ]
+  },
+  {
+    "event": "SHEET_PARSED",
+    "timestamp": "2026-04-24T22:24:28.929901",
+    "filename": "fnol 2.txt",
+    "sheet": "Transcript",
+    "sheet_hash": "8be735012f47256d00ea7b70ec4ffc0b6125b542fb1193aaaff110ce190fa52a",
+    "claim_rows": 0,
+    "sheet_type": "TXT_TRANSCRIPT",
+    "total_rows": 0,
+    "total_cols": 0,
+    "col_renames": {}
+  },
+  {
+    "event": "FILE_INGESTED",
+    "timestamp": "2026-04-24T22:29:56.276652",
+    "filename": "fnol 2.txt",
+    "file_hash": "8be735012f47256d00ea7b70ec4ffc0b6125b542fb1193aaaff110ce190fa52a",
+    "sheets": [
+      "Transcript"
+    ]
+  },
+  {
+    "event": "SHEET_PARSED",
+    "timestamp": "2026-04-24T22:29:56.459723",
+    "filename": "fnol 2.txt",
+    "sheet": "Transcript",
+    "sheet_hash": "8be735012f47256d00ea7b70ec4ffc0b6125b542fb1193aaaff110ce190fa52a",
+    "claim_rows": 0,
+    "sheet_type": "TXT_TRANSCRIPT",
+    "total_rows": 0,
+    "total_cols": 0,
+    "col_renames": {}
+  },
+  {
+    "event": "FILE_INGESTED",
+    "timestamp": "2026-04-24T22:32:26.485960",
+    "filename": "FNOL Transcript.txt",
+    "file_hash": "084673364fcbb2749a4b4ff87324ccee29daafcb656628c9d12d5c1700ecc17b",
+    "sheets": [
+      "Transcript"
+    ]
+  },
+  {
+    "event": "SHEET_PARSED",
+    "timestamp": "2026-04-24T22:32:26.668074",
+    "filename": "FNOL Transcript.txt",
+    "sheet": "Transcript",
+    "sheet_hash": "084673364fcbb2749a4b4ff87324ccee29daafcb656628c9d12d5c1700ecc17b",
+    "claim_rows": 0,
+    "sheet_type": "TXT_TRANSCRIPT",
+    "total_rows": 0,
+    "total_cols": 0,
+    "col_renames": {}
+  },
+  {
+    "event": "SHEET_PARSED",
+    "timestamp": "2026-04-24T22:36:08.623530",
+    "filename": "fnol 2.txt",
+    "sheet": "Transcript",
+    "sheet_hash": "8be735012f47256d00ea7b70ec4ffc0b6125b542fb1193aaaff110ce190fa52a",
+    "claim_rows": 0,
+    "sheet_type": "TXT_TRANSCRIPT",
+    "total_rows": 0,
+    "total_cols": 0,
+    "col_renames": {}
+  },
+  {
+    "event": "FILE_INGESTED",
+    "timestamp": "2026-04-24T22:36:57.692215",
+    "filename": "FNOL Transcript.txt",
+    "file_hash": "084673364fcbb2749a4b4ff87324ccee29daafcb656628c9d12d5c1700ecc17b",
+    "sheets": [
+      "Transcript"
+    ]
+  },
+  {
+    "event": "SHEET_PARSED",
+    "timestamp": "2026-04-24T22:36:57.949054",
+    "filename": "FNOL Transcript.txt",
+    "sheet": "Transcript",
+    "sheet_hash": "084673364fcbb2749a4b4ff87324ccee29daafcb656628c9d12d5c1700ecc17b",
+    "claim_rows": 0,
+    "sheet_type": "TXT_TRANSCRIPT",
+    "total_rows": 0,
+    "total_cols": 0,
+    "col_renames": {}
+  },
+  {
+    "event": "FILE_INGESTED",
+    "timestamp": "2026-04-24T22:39:41.574719",
+    "filename": "fnol 2.txt",
+    "file_hash": "8be735012f47256d00ea7b70ec4ffc0b6125b542fb1193aaaff110ce190fa52a",
+    "sheets": [
+      "Transcript"
+    ]
+  },
+  {
+    "event": "SHEET_PARSED",
+    "timestamp": "2026-04-24T22:39:41.748232",
+    "filename": "fnol 2.txt",
+    "sheet": "Transcript",
+    "sheet_hash": "8be735012f47256d00ea7b70ec4ffc0b6125b542fb1193aaaff110ce190fa52a",
+    "claim_rows": 0,
+    "sheet_type": "TXT_TRANSCRIPT",
+    "total_rows": 0,
+    "total_cols": 0,
+    "col_renames": {}
+  },
+  {
+    "event": "SHEET_PARSED",
+    "timestamp": "2026-04-24T22:48:10.434370",
+    "filename": "FNOL Transcript.txt",
+    "sheet": "Transcript",
+    "sheet_hash": "084673364fcbb2749a4b4ff87324ccee29daafcb656628c9d12d5c1700ecc17b",
+    "claim_rows": 0,
+    "sheet_type": "TXT_TRANSCRIPT",
+    "total_rows": 0,
+    "total_cols": 0,
+    "col_renames": {}
+  },
+  {
+    "event": "FILE_INGESTED",
+    "timestamp": "2026-04-24T22:49:03.555034",
+    "filename": "FNOL Transcript.txt",
+    "file_hash": "084673364fcbb2749a4b4ff87324ccee29daafcb656628c9d12d5c1700ecc17b",
+    "sheets": [
+      "Transcript"
+    ]
+  },
+  {
+    "event": "SHEET_PARSED",
+    "timestamp": "2026-04-24T22:49:03.778196",
+    "filename": "FNOL Transcript.txt",
+    "sheet": "Transcript",
+    "sheet_hash": "084673364fcbb2749a4b4ff87324ccee29daafcb656628c9d12d5c1700ecc17b",
+    "claim_rows": 0,
+    "sheet_type": "TXT_TRANSCRIPT",
+    "total_rows": 0,
+    "total_cols": 0,
+    "col_renames": {}
   }
 ]
