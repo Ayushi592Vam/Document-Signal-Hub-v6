@@ -3012,51 +3012,44 @@ def _render_journey_tab(
             last_edit_ts = max(all_ts)[:19].replace("T", " ")
 
     st.markdown(
-    f"<div style='background:{_BG2};border:1px solid {_BORDER};"
-    f"border-radius:10px;padding:16px 20px;margin-bottom:20px;'>"
-    f"<div style='font-size:10px;font-weight:700;color:#b45309;"
-    f"font-family:monospace;text-transform:uppercase;letter-spacing:2px;"
-    f"margin-bottom:14px;'>⚡ Pipeline Trace</div>"
-
-    # ── Row 1: Parse step ──────────────────────────────────────────────────
-    f"<div style='display:grid;grid-template-columns:160px 1fr;gap:8px;"
-    f"padding:8px 0;border-bottom:1px solid {_BORDER};align-items:start;'>"
-    f"<span style='font-size:10px;font-weight:700;"
-    f"color:{'#0284c7' if is_txt else '#16a34a'};"
-    f"font-family:monospace;text-transform:uppercase;letter-spacing:.8px;'>"
-    f"{'📝 TEXT PARSED' if is_txt else '📄 AZURE DI — PDF PARSED'}</span>"
-    f"<span style='font-size:11px;color:{_TXT2};font-family:monospace;'>"
-    f"{parse_msg} &nbsp;"
-    f"<span style='color:{_LBL};'>{session_start[:19].replace('T', ' ') if session_start else now_str}</span>"
-    f"</span></div>"
-
-    # ── Row 2: Entities + signals ──────────────────────────────────────────
-    f"<div style='display:grid;grid-template-columns:160px 1fr;gap:8px;"
-    f"padding:8px 0;border-bottom:1px solid {_BORDER};align-items:start;'>"
-    f"<span style='font-size:10px;font-weight:700;color:#7c3aed;"
-    f"font-family:monospace;text-transform:uppercase;letter-spacing:.8px;'>"
-    f"Entities + signals</span>"
-    f"<span style='font-size:11px;color:{_TXT2};font-family:monospace;'>"
-    f"→ {entity_msg}"
-    f"</span></div>"
-
-    # ── Row 3: User edits ──────────────────────────────────────────────────
-    f"<div style='display:grid;grid-template-columns:160px 1fr;gap:8px;"
-    f"padding:8px 0;align-items:start;'>"
-    f"<span style='font-size:10px;font-weight:700;color:#2563eb;"
-    f"font-family:monospace;text-transform:uppercase;letter-spacing:.8px;'>"
-    f"✏️ USER EDITS</span>"
-    f"<span style='font-size:11px;color:{_TXT2};font-family:monospace;'>"
-    + (
-        f"→ {edit_count} field(s) manually updated &nbsp;"
-        f"<span style='color:{_LBL};'>{last_edit_ts}</span>"
-        if edit_count else
-        f"→ <span style='color:{_LBL};'>No edits made this session</span>"
+        f"<div style='background:{_BG2};border:1px solid {_BORDER};"
+        f"border-radius:10px;padding:16px 20px;margin-bottom:20px;'>"
+        f"<div style='font-size:10px;font-weight:700;color:#b45309;"
+        f"font-family:monospace;text-transform:uppercase;letter-spacing:2px;"
+        f"margin-bottom:14px;'>⚡ Pipeline Trace</div>"
+        f"<div style='display:grid;grid-template-columns:160px 1fr;gap:8px;"
+        f"padding:8px 0;border-bottom:1px solid {_BORDER};align-items:start;'>"
+        f"<span style='font-size:10px;font-weight:700;color:#b45309;"
+        f"font-family:monospace;text-transform:uppercase;letter-spacing:.8px;'>"
+        f"{'📄 AZURE DI — PDF PARSED' if is_pdf else 'TEXT PARSED'}</span>"
+        f"<span style='font-size:11px;color:{_TXT2};font-family:monospace;'>"
+        f"{entity_msg}"
+        f"<span style='color:{_LBL};'>{session_start[:19].replace('T',' ') if session_start else now_str}</span>"
+        f"</span></div>"
+        f"<div style='display:grid;grid-template-columns:160px 1fr;gap:8px;"
+        f"padding:8px 0;border-bottom:1px solid {_BORDER};align-items:start;'>"
+        f"<span style='font-size:10px;font-weight:700;color:#7c3aed;"
+        f"font-family:monospace;text-transform:uppercase;letter-spacing:.8px;'>"
+        f"Entities + signals</span>"
+        f"<span style='font-size:11px;color:{_TXT2};font-family:monospace;'>"
+        
+        f"→ {parse_msg} &nbsp;"
+        f"<div style='display:grid;grid-template-columns:160px 1fr;gap:8px;"
+        f"padding:8px 0;align-items:start;'>"
+        f"<span style='font-size:10px;font-weight:700;color:#2563eb;"
+        f"font-family:monospace;text-transform:uppercase;letter-spacing:.8px;'>"
+        f"✏️ USER EDITS</span>"
+        f"<span style='font-size:11px;color:{_TXT2};font-family:monospace;'>"
+        + (
+            f"→ {edit_count} field(s) manually updated &nbsp;"
+            f"<span style='color:{_LBL};'>{last_edit_ts}</span>"
+            if edit_count else
+            f"→ <span style='color:{_LBL};'>No edits made this session</span>"
+        )
+        + f"</span></div></div>",
+        unsafe_allow_html=True,
     )
-    + f"</span></div>"
-    f"</div>",
-    unsafe_allow_html=True,
-)
+
     st.markdown(_section_header("Field Transformation Timeline"), unsafe_allow_html=True)
 
     def _step_circle(n: int, color: str) -> str:
@@ -3138,110 +3131,117 @@ def _render_journey_tab(
         )
 
     def _field_card(fname: str, finfo: dict) -> None:
+        finfo = dict(finfo)
+        finfo["_field_name_hint"] = fname
 
-    finfo = dict(finfo)
-    finfo["_field_name_hint"] = fname
-
-    extracted = finfo.get("value", "")
-    _EMPTY = {
-        "not found", "n/a", "na", "none", "unknown", "not available",
-        "not stated", "not specified", "not provided", "unspecified",
-        "see narrative", "not applicable", "-", "—", "",
-    }
-    if (extracted or "").strip().lower() in _EMPTY:
-        return
-
-    changes  = hist.get(fname, [])
-    is_mod   = bool(changes)
-    border   = "#fde68a" if is_mod else _BORDER
-    bg       = "#fffbeb" if is_mod else _BG
-    mod_badge = (
-        f"<span style='margin-left:8px;font-size:9px;font-weight:700;"
-        f"color:#b45309;background:#fef9c3;border:1px solid #fde047;"
-        f"border-radius:10px;padding:2px 8px;font-family:monospace;'>"
-        f"MODIFIED</span>"
-        if is_mod else ""
-    )
-    src_page = finfo.get("source_page", "")
-    src_text = finfo.get("source_text", "")
-    step1_ts = session_start[:19].replace("T", " ") if session_start else now_str
-
-    _is_txt_src   = st.session_state.get("_pdf_intelligence", {}).get("source") == "txt"
-    _step1_label  = "📝 Text Extraction — Transcript Parsed" if _is_txt_src else "📄 Azure DI — PDF Parsed"
-    _step1_color  = "#0284c7" if _is_txt_src else "#16a34a"
-    _step1_detail = (
-        "Value extracted from transcript text."
-        if _is_txt_src else
-        "Raw text and key-value pairs extracted from PDF."
-        + (f" Source: page {src_page}." if src_page else "")
-    )
-
-    html = (
-        f"<div style='background:{bg};border:1px solid {border};"
-        f"border-radius:10px;padding:16px 18px;margin-bottom:12px;'>"
-        f"<div style='font-size:12px;font-weight:700;color:{_TXT};"
-        f"font-family:monospace;text-transform:uppercase;letter-spacing:1px;"
-        f"margin-bottom:14px;'>{fname}{mod_badge}</div>"
-        f"<div style='display:flex;gap:12px;margin-bottom:10px;'>"
-        f"{_step_circle(1, _step1_color)}"
-        f"<div style='flex:1;'>"
-        f"<div style='display:flex;justify-content:space-between;align-items:center;"
-        f"margin-bottom:4px;'>"
-        f"<span style='font-size:10px;font-weight:700;color:{_step1_color};"
-        f"font-family:monospace;text-transform:uppercase;'>{_step1_label}</span>"
-        f"<span style='font-size:9px;color:{_LBL};font-family:monospace;'>"
-        f"⏱ {step1_ts}</span>"
-        f"</div>"
-        f"<div style='font-size:11px;color:{_LBL};font-family:monospace;"
-        f"margin-bottom:5px;'>{_step1_detail}</div>"
-        f"<div style='background:{_BG2};border:1px solid {_BORDER};border-radius:5px;"
-        f"padding:8px 12px;font-size:12px;color:{_TXT};font-family:monospace;"
-        f"word-break:break-word;min-height:32px;'>"
-        f"{extracted if extracted else f'<span style=\"color:{_LBL2};\">—</span>'}"
-        f"</div>"
-        + (
-            f"<div style='font-size:10px;color:{_LBL};font-family:monospace;"
-            f"background:{_BG2};border-left:2px solid {_BORDER2};padding:4px 8px;"
-            f"margin-top:5px;border-radius:0 4px 4px 0;font-style:italic;'>"
-            f"📄 {src_text}</div>"
-            if src_text and not _is_txt_src else ""
+        extracted = finfo.get("value", "")
+        if not extracted or not extracted.strip():  # ADD THIS
+           return
+        changes   = hist.get(fname, [])
+        is_mod    = bool(changes)
+        border    = "#fde68a" if is_mod else _BORDER
+        bg        = "#fffbeb" if is_mod else _BG
+        mod_badge = (
+            f"<span style='margin-left:8px;font-size:9px;font-weight:700;"
+            f"color:#b45309;background:#fef9c3;border:1px solid #fde047;"
+            f"border-radius:10px;padding:2px 8px;font-family:monospace;'>"
+            f"MODIFIED</span>"
+            if is_mod else ""
         )
-        + f"</div></div>"
-    )
+        src_page = finfo.get("source_page", "")
+        src_text = finfo.get("source_text", "")
+        step1_ts = session_start[:19].replace("T", " ") if session_start else now_str
 
-    if not _is_txt_src:
-        html += _source_step_html(2, finfo, step1_ts)
-
-    for i, ch in enumerate(changes):
-        ts     = (ch.get("timestamp", "")[:19] or "").replace("T", " ")
-        from_v = ch.get("from", "")
-        to_v   = ch.get("to", "")
-        html += (
-            f"<div style='display:flex;gap:12px;margin-bottom:8px;'>"
-            f"{_step_circle(i+3 if not _is_txt_src else i+2, '#ca8a04')}"
+        html = (
+            f"<div style='background:{bg};border:1px solid {border};"
+            f"border-radius:10px;padding:16px 18px;margin-bottom:12px;'>"
+            f"<div style='font-size:12px;font-weight:700;color:{_TXT};"
+            f"font-family:monospace;text-transform:uppercase;letter-spacing:1px;"
+            f"margin-bottom:14px;'>{fname}{mod_badge}</div>"
+            f"<div style='display:flex;gap:12px;margin-bottom:10px;'>"
+            f"{_step_circle(1,'#16a34a')}"
             f"<div style='flex:1;'>"
             f"<div style='display:flex;justify-content:space-between;align-items:center;"
-            f"margin-bottom:6px;'>"
-            f"<span style='font-size:10px;font-weight:700;color:#b45309;"
-            f"font-family:monospace;text-transform:uppercase;'>✏️ User Edit #{i+1}</span>"
+            f"margin-bottom:4px;'>"
+            f"<span style='font-size:10px;font-weight:700;color:#16a34a;"
+            f"font-family:monospace;text-transform:uppercase;'>📄 Azure DI — PDF Parsed</span>"
             f"<span style='font-size:9px;color:{_LBL};font-family:monospace;'>"
-            f"⏱ {ts} · _sync_edit()</span>"
+            f"⏱ {step1_ts} </span>"
             f"</div>"
-            f"<div style='display:flex;gap:10px;align-items:center;'>"
-            f"<div style='flex:1;background:#fef2f2;border:1px solid #fecaca;"
-            f"border-radius:5px;padding:7px 12px;font-size:12px;"
-            f"color:#dc2626;font-family:monospace;word-break:break-word;'>"
-            f"FROM: {from_v or '—'}</div>"
-            f"<span style='font-size:16px;color:{_LBL};'>→</span>"
-            f"<div style='flex:1;background:#f0fdf4;border:1px solid #bbf7d0;"
-            f"border-radius:5px;padding:7px 12px;font-size:12px;"
-            f"color:#16a34a;font-family:monospace;word-break:break-word;'>"
-            f"TO: {to_v or '—'}</div>"
-            f"</div></div></div>"
+            f"<div style='font-size:11px;color:{_LBL};font-family:monospace;"
+            f"margin-bottom:5px;'>Raw text and key-value pairs extracted from PDF."
+            + (f" Source: page {src_page}." if src_page else "")
+            + f"</div>"
+            f"<div style='background:{_BG2};border:1px solid {_BORDER};border-radius:5px;"
+            f"padding:8px 12px;font-size:12px;color:{_TXT};font-family:monospace;"
+            f"word-break:break-word;min-height:32px;'>"
+            f"{extracted if extracted else f'<span style=\"color:{_LBL2};\">—</span>'}"
+            f"</div>"
+            + (
+                f"<div style='font-size:10px;color:{_LBL};font-family:monospace;"
+                f"background:{_BG2};border-left:2px solid {_BORDER2};padding:4px 8px;"
+                f"margin-top:5px;border-radius:0 4px 4px 0;font-style:italic;'>"
+                f"📄 {src_text}</div>"
+                if src_text else ""
+            )
+            + f"</div></div>"
         )
 
-    html += "</div>"
-    st.markdown(html, unsafe_allow_html=True)
+        _is_txt_src = st.session_state.get("_pdf_intelligence", {}).get("source") == "txt"
+        if not _is_txt_src:
+           html += _source_step_html(2, finfo, step1_ts)
+
+        for i, ch in enumerate(changes):
+            ts     = (ch.get("timestamp", "")[:19] or "").replace("T", " ")
+            from_v = ch.get("from", "")
+            to_v   = ch.get("to", "")
+            html += (
+                f"<div style='display:flex;gap:12px;margin-bottom:8px;'>"
+                f"{_step_circle(i+3,'#ca8a04')}"
+                f"<div style='flex:1;'>"
+                f"<div style='display:flex;justify-content:space-between;align-items:center;"
+                f"margin-bottom:6px;'>"
+                f"<span style='font-size:10px;font-weight:700;color:#b45309;"
+                f"font-family:monospace;text-transform:uppercase;'>✏️ User Edit #{i+1}</span>"
+                f"<span style='font-size:9px;color:{_LBL};font-family:monospace;'>"
+                f"⏱ {ts} · _sync_edit()</span>"
+                f"</div>"
+                f"<div style='display:flex;gap:10px;align-items:center;'>"
+                f"<div style='flex:1;background:#fef2f2;border:1px solid #fecaca;"
+                f"border-radius:5px;padding:7px 12px;font-size:12px;"
+                f"color:#dc2626;font-family:monospace;word-break:break-word;'>"
+                f"FROM: {from_v or '—'}</div>"
+                f"<span style='font-size:16px;color:{_LBL};'>→</span>"
+                f"<div style='flex:1;background:#f0fdf4;border:1px solid #bbf7d0;"
+                f"border-radius:5px;padding:7px 12px;font-size:12px;"
+                f"color:#16a34a;font-family:monospace;word-break:break-word;'>"
+                f"TO: {to_v or '—'}</div>"
+                f"</div></div></div>"
+            )
+
+        html += "</div>"
+        st.markdown(html, unsafe_allow_html=True)
+
+    for fname, finfo in changed_fields:
+        _field_card(fname, finfo)
+
+    if unchanged_fields:
+        with st.expander(f"📋 {len(unchanged_fields)} unchanged field(s)"):
+            for fname, finfo in unchanged_fields:
+                _field_card(fname, finfo)
+
+    st.markdown("<div style='margin-top:24px;'></div>", unsafe_allow_html=True)
+    st.markdown(_section_header("Audit Log"), unsafe_allow_html=True)
+
+    _EVENT_META = {
+        "FILE_INGESTED":           {"color": "#16a34a", "icon": "📄"},
+        "SHEET_PARSED":            {"color": "#2563eb", "icon": "🔍"},
+        "SHEET_LOADED_FROM_CACHE": {"color": "#7c3aed", "icon": "💾"},
+    }
+
+    try:
+        from modules.audit import _load_audit_log  # type: ignore[import]
+        full_log = _load_audit_log()
 
         def _is_cur(e: dict) -> bool:
             ts = e.get("timestamp", "")
