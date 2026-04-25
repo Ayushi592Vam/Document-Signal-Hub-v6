@@ -3048,7 +3048,7 @@ def _render_journey_tab(
         f"<span style='font-size:10px;font-weight:700;color:#b45309;"
         f"font-family:monospace;text-transform:uppercase;'>"
         f"{'📝 Text Extraction — TXT Parsed' if _is_txt_card else '📄 Azure DI — PDF Parsed'}"
-        f"</span>"  
+        f"</span>"
         f"<span style='font-size:11px;color:{_TXT2};font-family:monospace;'>"
         f"{entity_msg}"
         f"<span style='color:{_LBL};'>{session_start[:19].replace('T',' ') if session_start else now_str}</span>"
