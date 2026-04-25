@@ -3003,7 +3003,7 @@ def _render_journey_tab(
     uploaded = str(uploaded_name).lower()
 
     is_txt = ("txt" in source) or uploaded.endswith(".txt")
-
+    _is_txt_card = is_txt 
     parse_msg = (
     "Azure Document Intelligence parsed the PDF. Fields extracted to sheet cache."
     if is_pdf else
@@ -3179,7 +3179,7 @@ def _render_journey_tab(
         src_text = finfo.get("source_text", "")
         step1_ts = session_start[:19].replace("T", " ") if session_start else now_str
 
-        _is_txt_card = st.session_state.get("_pdf_intelligence", {}).get("source") == "txt"
+        
         html = (
             f"<div style='background:{bg};border:1px solid {border};"
             f"border-radius:10px;padding:16px 18px;margin-bottom:12px;'>"
