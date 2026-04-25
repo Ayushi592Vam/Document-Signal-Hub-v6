@@ -102,6 +102,32 @@ _UPLOADER_PLUS_CSS = """
 </style>
 """
 
+_DIALOG_CSS = """
+<style>
+/* Force white background and black text in all st.dialog modals */
+div[data-testid="stDialog"] > div > div {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+}
+div[data-testid="stDialog"] * {
+    color: #0f172a !important;
+}
+div[data-testid="stDialog"] [data-testid="stMarkdownContainer"] * {
+    color: #0f172a !important;
+}
+div[data-testid="stDialog"] code,
+div[data-testid="stDialog"] pre {
+    background-color: #f8f9fa !important;
+    color: #0f172a !important;
+}
+div[data-testid="stDialog"] input,
+div[data-testid="stDialog"] textarea {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+}
+</style>
+"""
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # SIGNAL KEYWORD SYNTHESIS — fallback when LLM returns signals=[]
@@ -3152,6 +3178,7 @@ def _render_journey_tab(
         src_text = finfo.get("source_text", "")
         step1_ts = session_start[:19].replace("T", " ") if session_start else now_str
 
+        _is_txt_card = st.session_state.get("_pdf_intelligence", {}).get("source") == "txt"
         html = (
             f"<div style='background:{bg};border:1px solid {border};"
             f"border-radius:10px;padding:16px 18px;margin-bottom:12px;'>"
@@ -3164,12 +3191,14 @@ def _render_journey_tab(
             f"<div style='display:flex;justify-content:space-between;align-items:center;"
             f"margin-bottom:4px;'>"
             f"<span style='font-size:10px;font-weight:700;color:#16a34a;"
-            f"font-family:monospace;text-transform:uppercase;'>📄 Azure DI — PDF Parsed</span>"
+            f"font-family:monospace;text-transform:uppercase;'>"
+            f"{'📝 Text Extraction — TXT Parsed' if st.session_state.get('_pdf_intelligence', {}).get('source') == 'txt' else '📄 Azure DI — PDF Parsed'}"
+            f"</span>"
             f"<span style='font-size:9px;color:{_LBL};font-family:monospace;'>"
             f"⏱ {step1_ts} </span>"
             f"</div>"
             f"<div style='font-size:11px;color:{_LBL};font-family:monospace;"
-            f"margin-bottom:5px;'>Raw text and key-value pairs extracted from PDF."
+            f"margin-bottom:5px;'>{'Entities and signals extracted from unstructured transcript text.' if _is_txt_card else 'Raw text and key-value pairs extracted from PDF.'}"
             + (f" Source: page {src_page}." if src_page else "")
             + f"</div>"
             f"<div style='background:{_BG2};border:1px solid {_BORDER};border-radius:5px;"
