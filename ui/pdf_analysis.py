@@ -2259,6 +2259,14 @@ def _render_entities_tab(
         if (extracted or "").strip().lower() in _EMPTY_PLACEHOLDERS:
             continue
 
+        # PATCH: skip "Policyholder Name" for TXT-sourced FNOL docs
+        _is_txt_source = st.session_state.get("_pdf_intelligence", {}).get("source") == "txt"
+        _doc_type_cur  = st.session_state.get("_pdf_intelligence", {}).get("doc_type", "")
+        if _is_txt_source and _doc_type_cur == "FNOL":
+           _FNOL_TXT_SKIP = {"policyholder name", "policyholder_name", "policy holder name"}
+           if field_name.strip().lower() in _FNOL_TXT_SKIP:
+              continue
+
         modified   = eds.get(field_name, field_info.get("modified", extracted))
         in_edit    = field_name in st.session_state[_EM_KEY]
         has_bbox   = bool(field_info.get("bounding_polygon"))
